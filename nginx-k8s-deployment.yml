@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-k8s-task-deployment
+  labels:
+    app: k8s-task
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: k8s-task
+  template:
+    metadata:
+      labels:
+        app: k8s-task 
+    spec:
+      containers:
+      - name: nginx-k8s
+        image: mohamedelnhas018/elnhas-nginx-docker-task:v1.0
+        ports:
+          - containerPort: 8080
+        resources:
+          requests:
+            cpu: "200m"
